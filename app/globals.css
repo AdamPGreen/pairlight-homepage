@@ -43,6 +43,11 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    
+    /* New gradient variables for light mode */
+    --gradient-blob-1: 220 100% 65%;
+    --gradient-blob-2: 240 100% 70%;
+    --gradient-blob-3: 260 100% 75%;
   }
 
   .dark {
@@ -79,6 +84,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-blob {
+    @apply bg-gradient-radial from-[hsl(var(--gradient-blob-1))] via-[hsl(var(--gradient-blob-2))] to-[hsl(var(--gradient-blob-3))];
   }
 }
 

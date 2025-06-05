@@ -12,7 +12,7 @@ export function ProductPreview() {
   ];
 
   return (
-    <section className="py-20 bg-[#6B85FE]/[0.03] dark:bg-[#6B85FE]/[0.02] overflow-hidden">
+    <section className="py-20 bg-[#6B85FE]/[0.03] dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02] overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export function ProductPreview() {
                         { name: "Dr. Emily Patel", role: "Quantum Computing Expert", org: "IBM Research", match: "93%" },
                         { name: "James Wilson", role: "Future of Work Strategist", org: "McKinsey Digital", match: "91%" }
                       ].map((speaker, index) => (
-                        <div key={index} className="border rounded-md p-4 flex gap-4">
+                        <div key={index} className="border rounded-md p-4 flex gap-4 bg-card/50 dark:bg-white/5 hover:bg-card/80 dark:hover:bg-white/10 transition-colors">
                           <div className="h-12 w-12 rounded-full bg-muted"></div>
                           <div className="flex-1">
                             <h4 className="font-medium">{speaker.name}</h4>

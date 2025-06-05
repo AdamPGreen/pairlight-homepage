@@ -6,17 +6,17 @@ import { DocumentTextIcon, UserGroupIcon, PaperAirplaneIcon } from "@heroicons/r
 export function HowItWorks() {
   const steps = [
     {
-      icon: <DocumentTextIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <DocumentTextIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Insert your brief",
       description: "Topic, format, goals."
     },
     {
-      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Live shortlist builds",
       description: "AI streams bios, fees and ratings in real time."
     },
     {
-      icon: <PaperAirplaneIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <PaperAirplaneIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Review and approve",
       description: "Our agents handle outreach and coordination."
     }
@@ -44,7 +44,7 @@ export function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-20 bg-[#6B85FE]/[0.03] dark:bg-[#6B85FE]/[0.02]">
+    <section id="how-it-works" className="py-20 bg-[#6B85FE]/[0.03] dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02]">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

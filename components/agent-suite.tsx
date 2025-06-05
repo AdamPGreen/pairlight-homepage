@@ -7,25 +7,25 @@ import { Card } from "@/components/ui/card";
 export function AgentSuite() {
   const agents = [
     {
-      icon: <MagnifyingGlassIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <MagnifyingGlassIcon className="h-6 w-6 dark:text-[#8B9FFF]" style={{ stroke: "#6B85FE" }} />,
       name: "Match Agent",
       description: "Delivers a ranked shortlist in minutes based on your agenda, audience and slot format.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <UserPlusIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <UserPlusIcon className="h-6 w-6 dark:text-[#8B9FFF]" style={{ stroke: "#6B85FE" }} />,
       name: "Recruit Agent",
       description: "Continuously scouts and qualifies fresh voices, expanding the speaker database.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <ChatBubbleLeftRightIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <ChatBubbleLeftRightIcon className="h-6 w-6 dark:text-[#8B9FFF]" style={{ stroke: "#6B85FE" }} />,
       name: "Feedback Agent",
       description: "Captures ratings and qualitative notes post-event to sharpen future recommendations.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <CalendarIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <CalendarIcon className="h-6 w-6 dark:text-[#8B9FFF]" style={{ stroke: "#6B85FE" }} />,
       name: "Agenda Agent",
       description: "Suggests session titles, formats and flow, keeping your entire program cohesive.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
@@ -54,7 +54,7 @@ export function AgentSuite() {
   };
 
   return (
-    <section className="py-24 bg-[#6B85FE]/[0.03] dark:bg-[#6B85FE]/[0.02] overflow-hidden">
+    <section className="py-24 bg-[#6B85FE]/[0.03] dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02] overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,26 +89,17 @@ export function AgentSuite() {
               }}
               className="group"
             >
-              <Card className="relative h-full p-6 bg-background/80 backdrop-blur-sm border-2 border-transparent hover:border-[#6B85FE]/20 transition-all duration-300 overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${agent.gradient}`} />
-                </div>
-                
+              <Card className="relative h-full p-6 bg-background/90 backdrop-blur-md border border-gray-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:bg-white/5 dark:border-white/20 dark:shadow-[0_4px_20px_rgba(107,133,254,0.08)] transition-all duration-300 overflow-hidden">
                 <div className="relative">
-                  <div className="mb-6">
-                    <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${agent.gradient} p-[1px] overflow-hidden`}>
-                      <div className="absolute inset-0 bg-background/90 rounded-[11px] m-[1px]" />
-                      <div className="relative flex items-center justify-center h-full">
-                        {agent.icon}
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 rounded-full bg-muted dark:bg-white/5 flex items-center justify-center mb-6">
+                    {agent.icon}
                   </div>
                   
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-foreground transition-colors duration-300">
+                  <h3 className="text-xl font-semibold mb-3">
                     {agent.name}
                   </h3>
                   
-                  <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                  <p className="text-muted-foreground">
                     {agent.description}
                   </p>
                 </div>

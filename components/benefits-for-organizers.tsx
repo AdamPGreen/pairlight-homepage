@@ -7,17 +7,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export function BenefitsForOrganizers() {
   const benefits = [
     {
-      icon: <ClockIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <ClockIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Instant shortlist",
       description: "Skip weeks of outreach."
     },
     {
-      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Premium network",
       description: "Invite-only talent keeps sessions fresh and on-trend."
     },
     {
-      icon: <StarIcon className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <StarIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Built on trust",
       description: "Every speaker graded by real event feedback."
     }
@@ -45,43 +45,48 @@ export function BenefitsForOrganizers() {
   };
 
   return (
-    <section id="for-organizers" className="py-20">
+    <section id="for-organizers" className="py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Benefits for Organizers
-          </h2>
-        </motion.div>
-        
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {benefits.map((benefit, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full border-none shadow-md hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="p-2 rounded-full bg-[#6B85FE]/10">
-                    {benefit.icon}
-                  </div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-left"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+              Benefits for Organizers
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Streamline your event planning process and connect with top-tier speakers who align perfectly with your vision.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="border-none shadow-md hover:shadow-lg transition-shadow duration-300 dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02] dark:border dark:border-[#6B85FE]/[0.1]">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <div className="p-2 rounded-full bg-[#6B85FE]/10 dark:bg-[#6B85FE]/20">
+                      {benefit.icon}
+                    </div>
+                    <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -29,8 +29,14 @@ export function HeroSection() {
       const isDark = document.documentElement.classList.contains("dark");
       const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
       
-      gradient.addColorStop(0, isDark ? "rgba(107, 133, 254, 0.3)" : "rgba(107, 133, 254, 0.2)");
-      gradient.addColorStop(1, isDark ? "rgba(0, 0, 0, 0)" : "rgba(255, 255, 255, 0)");
+      if (isDark) {
+        gradient.addColorStop(0, "rgba(107, 133, 254, 0.3)");
+        gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      } else {
+        gradient.addColorStop(0, "hsla(220, 100%, 65%, 0.2)");
+        gradient.addColorStop(0.5, "hsla(240, 100%, 70%, 0.15)");
+        gradient.addColorStop(1, "hsla(260, 100%, 75%, 0)");
+      }
       
       return gradient;
     };
@@ -41,19 +47,21 @@ export function HeroSection() {
       size: number;
       speedX: number;
       speedY: number;
+      hue: number;
     }> = [];
     
     const createBubbles = () => {
       bubbles = [];
-      const totalBubbles = 3;
+      const totalBubbles = 4;
       
       for (let i = 0; i < totalBubbles; i++) {
         bubbles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: 150 + Math.random() * 200,
-          speedX: (Math.random() - 0.5) * 0.7,
-          speedY: (Math.random() - 0.5) * 0.7,
+          size: 200 + Math.random() * 250,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          hue: 220 + Math.random() * 40,
         });
       }
     };
@@ -62,8 +70,28 @@ export function HeroSection() {
       resizeCanvas();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      const baseGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      baseGradient.addColorStop(0, "hsla(220, 100%, 65%, 0.05)");
+      baseGradient.addColorStop(1, "hsla(260, 100%, 75%, 0.05)");
+      ctx.fillStyle = baseGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
       bubbles.forEach((bubble) => {
-        ctx.fillStyle = gradient(ctx, bubble.x, bubble.y, bubble.size);
+        const bubbleGradient = ctx.createRadialGradient(
+          bubble.x, bubble.y, 0,
+          bubble.x, bubble.y, bubble.size
+        );
+        
+        if (document.documentElement.classList.contains("dark")) {
+          bubbleGradient.addColorStop(0, "rgba(107, 133, 254, 0.3)");
+          bubbleGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+        } else {
+          bubbleGradient.addColorStop(0, `hsla(${bubble.hue}, 100%, 65%, 0.2)`);
+          bubbleGradient.addColorStop(0.5, `hsla(${bubble.hue}, 100%, 70%, 0.15)`);
+          bubbleGradient.addColorStop(1, `hsla(${bubble.hue}, 100%, 75%, 0)`);
+        }
+        
+        ctx.fillStyle = bubbleGradient;
         ctx.beginPath();
         ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
         ctx.fill();
