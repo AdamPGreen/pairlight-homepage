@@ -3,25 +3,43 @@
 import { useEffect, useState } from "react";
 import { Bot } from "lucide-react";
 
-const TOPICS = [
+interface Speaker {
+  name: string;
+  company: string;
+  expertise: string;
+  avatar: string;
+  match: number;
+}
+
+interface Query {
+  topic: string;
+  speakers: Speaker[];
+}
+
+interface Topic {
+  category: string;
+  queries: Query[];
+}
+
+const TOPICS: Topic[] = [
   {
     category: "Cleantech/Energy",
     queries: [
       { topic: "Clean Energy Tech", speakers: [
-        { name: "Jane Cooper", company: "Tesla Energy", expertise: "Renewable Energy Innovation", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Esther Howard", company: "Siemens Green", expertise: "Sustainable Grid Systems", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Robert Fox", company: "GE Renewable", expertise: "Clean Energy Storage", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Jacob Jones", company: "SunPower", expertise: "Solar Technology", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Emma Chen", company: "Vestas Wind", expertise: "Wind Energy Systems", avatar: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Michael Park", company: "NextEra", expertise: "Energy Infrastructure", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Jane Cooper", company: "Tesla Energy", expertise: "Renewable Energy Innovation", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 98 },
+        { name: "Esther Howard", company: "Siemens Green", expertise: "Sustainable Grid Systems", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 95 },
+        { name: "Robert Fox", company: "GE Renewable", expertise: "Clean Energy Storage", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 92 },
+        { name: "Jacob Jones", company: "SunPower", expertise: "Solar Technology", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 89 },
+        { name: "Emma Chen", company: "Vestas Wind", expertise: "Wind Energy Systems", avatar: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=200", match: 87 },
+        { name: "Michael Park", company: "NextEra", expertise: "Energy Infrastructure", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 85 }
       ]},
       { topic: "Green Infrastructure", speakers: [
-        { name: "Sarah Miller", company: "Schneider Electric", expertise: "Smart Buildings", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "David Kim", company: "ABB Group", expertise: "Grid Modernization", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Lisa Zhang", company: "Bloom Energy", expertise: "Fuel Cell Technology", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Tom Harris", company: "Enphase", expertise: "Microgrid Solutions", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Nina Patel", company: "ChargePoint", expertise: "EV Infrastructure", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "James Wilson", company: "Orsted", expertise: "Offshore Wind", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Sarah Miller", company: "Schneider Electric", expertise: "Smart Buildings", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 97 },
+        { name: "David Kim", company: "ABB Group", expertise: "Grid Modernization", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 94 },
+        { name: "Lisa Zhang", company: "Bloom Energy", expertise: "Fuel Cell Technology", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200", match: 91 },
+        { name: "Tom Harris", company: "Enphase", expertise: "Microgrid Solutions", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 88 },
+        { name: "Nina Patel", company: "ChargePoint", expertise: "EV Infrastructure", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 86 },
+        { name: "James Wilson", company: "Orsted", expertise: "Offshore Wind", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 84 }
       ]}
     ]
   },
@@ -29,20 +47,20 @@ const TOPICS = [
     category: "Venture Capital",
     queries: [
       { topic: "Early Stage Investing", speakers: [
-        { name: "Alex Rivera", company: "Sequoia Capital", expertise: "Seed Stage Investment", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Nina Patel", company: "Andreessen Horowitz", expertise: "Series A Strategy", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "James Wilson", company: "Kleiner Perkins", expertise: "Startup Valuation", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Lisa Zhang", company: "Accel", expertise: "Growth Capital", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Chris Lee", company: "Lightspeed", expertise: "Deep Tech Investment", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Rachel Cohen", company: "NEA", expertise: "Healthcare VC", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Alex Rivera", company: "Sequoia Capital", expertise: "Seed Stage Investment", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 96 },
+        { name: "Nina Patel", company: "Andreessen Horowitz", expertise: "Series A Strategy", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200", match: 93 },
+        { name: "James Wilson", company: "Kleiner Perkins", expertise: "Startup Valuation", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 90 },
+        { name: "Lisa Zhang", company: "Accel", expertise: "Growth Capital", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 87 },
+        { name: "Chris Lee", company: "Lightspeed", expertise: "Deep Tech Investment", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 85 },
+        { name: "Rachel Cohen", company: "NEA", expertise: "Healthcare VC", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 83 }
       ]},
       { topic: "Future of FinTech", speakers: [
-        { name: "Maya Sen", company: "Index Ventures", expertise: "Blockchain Investment", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Tom Harris", company: "Ribbit Capital", expertise: "Digital Banking", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Elena Costa", company: "Bessemer", expertise: "InsurTech", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Kevin Taylor", company: "Tiger Global", expertise: "Payment Tech", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Sofia Rodriguez", company: "Founders Fund", expertise: "DeFi", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Marcus Wong", company: "General Catalyst", expertise: "RegTech", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Maya Sen", company: "Index Ventures", expertise: "Blockchain Investment", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 95 },
+        { name: "Tom Harris", company: "Ribbit Capital", expertise: "Digital Banking", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 92 },
+        { name: "Elena Costa", company: "Bessemer", expertise: "InsurTech", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 89 },
+        { name: "Kevin Taylor", company: "Tiger Global", expertise: "Payment Tech", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 86 },
+        { name: "Sofia Rodriguez", company: "Founders Fund", expertise: "DeFi", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200", match: 84 },
+        { name: "Marcus Wong", company: "General Catalyst", expertise: "RegTech", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 82 }
       ]}
     ]
   },
@@ -50,20 +68,20 @@ const TOPICS = [
     category: "Design/Architecture",
     queries: [
       { topic: "Sustainable Design", speakers: [
-        { name: "Sofia Rodriguez", company: "Foster + Partners", expertise: "Eco-friendly Architecture", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Marcus Wong", company: "BIG", expertise: "Urban Planning", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Anna Schmidt", company: "Gensler", expertise: "Biophilic Design", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Kevin Taylor", company: "SOM", expertise: "Green Materials", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Elena Costa", company: "Zaha Hadid", expertise: "Parametric Design", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Ben Mitchell", company: "MVRDV", expertise: "Sustainable Cities", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Sofia Rodriguez", company: "Foster + Partners", expertise: "Eco-friendly Architecture", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200", match: 97 },
+        { name: "Marcus Wong", company: "BIG", expertise: "Urban Planning", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 94 },
+        { name: "Anna Schmidt", company: "Gensler", expertise: "Biophilic Design", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 91 },
+        { name: "Kevin Taylor", company: "SOM", expertise: "Green Materials", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 88 },
+        { name: "Elena Costa", company: "Zaha Hadid", expertise: "Parametric Design", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 86 },
+        { name: "Ben Mitchell", company: "MVRDV", expertise: "Sustainable Cities", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 84 }
       ]},
       { topic: "Digital Architecture", speakers: [
-        { name: "Liam O'Connor", company: "Autodesk", expertise: "Parametric Design", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Yuki Tanaka", company: "UNStudio", expertise: "Virtual Spaces", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Elena Costa", company: "Herzog & de Meuron", expertise: "Digital Fabrication", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Ben Mitchell", company: "Snøhetta", expertise: "3D Visualization", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "Sarah Miller", company: "OMA", expertise: "Computational Design", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200" },
-        { name: "David Kim", company: "Arup", expertise: "Digital Twin Technology", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" }
+        { name: "Liam O'Connor", company: "Autodesk", expertise: "Parametric Design", avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200", match: 96 },
+        { name: "Yuki Tanaka", company: "UNStudio", expertise: "Virtual Spaces", avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200", match: 93 },
+        { name: "Elena Costa", company: "Herzog & de Meuron", expertise: "Digital Fabrication", avatar: "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=200", match: 90 },
+        { name: "Ben Mitchell", company: "Snøhetta", expertise: "3D Visualization", avatar: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200", match: 87 },
+        { name: "Sarah Miller", company: "OMA", expertise: "Computational Design", avatar: "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200", match: 85 },
+        { name: "David Kim", company: "Arup", expertise: "Digital Twin Technology", avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200", match: 83 }
       ]}
     ]
   }
@@ -155,10 +173,12 @@ export function DemoCard() {
 
             {showResults && (
               <div className="space-y-3">
-                {currentSpeakers.map((speaker, index) => (
+                {currentSpeakers
+                  .sort((a, b) => b.match - a.match)
+                  .map((speaker, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
                     style={{
                       animation: `fadeIn 0.5s ease-out ${index * 0.1}s forwards`,
                       opacity: 0
@@ -179,6 +199,11 @@ export function DemoCard() {
                       <p className="text-sm text-zinc-500 truncate">
                         {speaker.expertise}
                       </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                        {speaker.match}% match
+                      </span>
                     </div>
                   </div>
                 ))}

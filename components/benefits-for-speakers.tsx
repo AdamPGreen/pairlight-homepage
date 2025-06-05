@@ -1,23 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { DollarSign, Award, LineChart } from "lucide-react";
+import { CurrencyDollarIcon, TrophyIcon, ChartBarIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function BenefitsForSpeakers() {
   const benefits = [
     {
-      icon: <DollarSign className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <CurrencyDollarIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Paid gigs without the chase",
       description: "Skip cold emails and RFP portals."
     },
     {
-      icon: <Award className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <TrophyIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Grow your status",
       description: "Invite-only badge signals quality."
     },
     {
-      icon: <LineChart className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <ChartBarIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Sharpen your craft",
       description: "Access feedback and community sessions."
     }

@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +38,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <Image
-              src="/assets/brand/logo.png"
+              src={theme === "dark" ? "/assets/brand/logo-dark.png" : "/assets/brand/logo.png"}
               alt="Pairlight Logo"
               width={24}
               height={24}
@@ -58,6 +60,16 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="h-9 w-9 relative"
+            >
+              <Moon className="h-5 w-5 transition-all duration-200 absolute inset-0 m-auto dark:opacity-0 dark:rotate-90" />
+              <Sun className="h-5 w-5 transition-all duration-200 absolute inset-0 m-auto opacity-0 rotate-90 dark:opacity-100 dark:rotate-0" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
             <Button 
               size="sm" 
               className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"

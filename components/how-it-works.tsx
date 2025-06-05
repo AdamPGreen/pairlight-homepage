@@ -1,22 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileText, Users, Send } from "lucide-react";
+import { DocumentTextIcon, UserGroupIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 export function HowItWorks() {
   const steps = [
     {
-      icon: <FileText className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <DocumentTextIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Insert your brief",
       description: "Topic, format, goals."
     },
     {
-      icon: <Users className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Live shortlist builds",
       description: "AI streams bios, fees and ratings in real time."
     },
     {
-      icon: <Send className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <PaperAirplaneIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Review and approve",
       description: "Our agents handle outreach and coordination."
     }

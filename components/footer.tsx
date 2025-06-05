@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter } from "lucide-react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 
@@ -33,7 +33,7 @@ export function Footer() {
             </Link>
             <div className="flex items-center gap-4">
               <Link href="https://twitter.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Twitter className="h-5 w-5" />
+                <XMarkIcon className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link href="mailto:hello@pairlight.io" className="text-muted-foreground hover:text-foreground transition-colors">

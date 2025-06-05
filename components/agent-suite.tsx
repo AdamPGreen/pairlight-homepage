@@ -1,31 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, UserPlus, MessageSquare, Calendar } from "lucide-react";
+import { MagnifyingGlassIcon, UserPlusIcon, ChatBubbleLeftRightIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import { Card } from "@/components/ui/card";
 
 export function AgentSuite() {
   const agents = [
     {
-      icon: <Search className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <MagnifyingGlassIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
       name: "Match Agent",
       description: "Delivers a ranked shortlist in minutes based on your agenda, audience and slot format.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <UserPlus className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <UserPlusIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
       name: "Recruit Agent",
       description: "Continuously scouts and qualifies fresh voices, expanding the speaker database.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <MessageSquare className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <ChatBubbleLeftRightIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
       name: "Feedback Agent",
       description: "Captures ratings and qualitative notes post-event to sharpen future recommendations.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"
     },
     {
-      icon: <Calendar className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
+      icon: <CalendarIcon className="h-6 w-6" style={{ stroke: "#6B85FE" }} />,
       name: "Agenda Agent",
       description: "Suggests session titles, formats and flow, keeping your entire program cohesive.",
       gradient: "from-[#6B85FE] to-[#8B9FFF]"

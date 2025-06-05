@@ -1,23 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Users, Star } from "lucide-react";
+import { ClockIcon, UserGroupIcon, StarIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function BenefitsForOrganizers() {
   const benefits = [
     {
-      icon: <Clock className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <ClockIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Instant shortlist",
       description: "Skip weeks of outreach."
     },
     {
-      icon: <Users className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Premium network",
       description: "Invite-only talent keeps sessions fresh and on-trend."
     },
     {
-      icon: <Star className="h-8 w-8 text-[#6B85FE]" />,
+      icon: <StarIcon className="h-8 w-8 text-[#6B85FE]" />,
       title: "Built on trust",
       description: "Every speaker graded by real event feedback."
     }
