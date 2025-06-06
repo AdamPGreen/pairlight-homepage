@@ -73,7 +73,7 @@ export function PricingSection() {
             <Button 
               className="w-full bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
             >
-              Contact sales
+              Get in touch
             </Button>
           </div>
         </motion.div>
