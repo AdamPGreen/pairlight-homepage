@@ -16,10 +16,13 @@ export function CtaSection() {
     if (isSubmitted) {
       timeoutId = setTimeout(() => {
         setIsSubmitted(false);
+        setEmail(''); // Reset email after success message disappears
       }, 4000);
     }
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, [isSubmitted]);
 
@@ -43,7 +46,6 @@ export function CtaSection() {
       }
 
       setIsSubmitted(true);
-      setEmail('');
     } catch (error) {
       console.error('Error subscribing:', error);
       alert('Failed to subscribe. Please try again.');
@@ -73,7 +75,6 @@ export function CtaSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
               className="bg-green-50 dark:bg-green-950/50 rounded-lg p-6 flex flex-col items-center gap-4"
             >
               <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
@@ -90,7 +91,6 @@ export function CtaSection() {
             <motion.form
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
               onSubmit={handleSubmit} 
               className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
             >

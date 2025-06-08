@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { CurrencyDollarIcon, TrophyIcon, ChartBarIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { JoinSpeakerNetworkModal } from "@/components/join-speaker-network-modal";
+import { Button } from "@/components/ui/button";
 
 export function BenefitsForSpeakers() {
   const benefits = [
@@ -58,9 +60,24 @@ export function BenefitsForSpeakers() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Benefits for Speakers
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-6">
               Join our exclusive network of speakers and unlock new opportunities to share your expertise with the world.
             </p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <JoinSpeakerNetworkModal>
+                <Button 
+                  size="lg" 
+                  className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white px-8 py-6 text-lg"
+                >
+                  Apply to the Network
+                </Button>
+              </JoinSpeakerNetworkModal>
+            </motion.div>
           </motion.div>
           
           <motion.div
