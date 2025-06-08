@@ -17,17 +17,29 @@ export async function POST(request: NextRequest) {
 
     // Parse the form data from the request
     const formData = await request.json();
-    const { firstName, lastName, email, company, jobTitle, phoneNumber, specificNeeds } = formData;
+    const { 
+      firstName, 
+      lastName, 
+      email, 
+      linkedin, 
+      expertise, 
+      speakingExperience,
+      phoneNumber,
+      website,
+      twitter,
+      instagram,
+      additionalInfo 
+    } = formData;
 
     // Format the message for Slack
     const slackMessage = {
-      text: "🔔 New Contact Form Submission",
+      text: "🎤 New Speaker Application",
       blocks: [
         {
           type: "header",
           text: {
             type: "plain_text",
-            text: "🔔 New Contact Form Submission"
+            text: "🎤 New Speaker Application"
           }
         },
         {
@@ -43,32 +55,79 @@ export async function POST(request: NextRequest) {
             },
             {
               type: "mrkdwn",
-              text: `*Company:*\n${company}`
+              text: `*LinkedIn:*\n${linkedin}`
             },
             {
               type: "mrkdwn",
-              text: `*Job Title:*\n${jobTitle || 'Not provided'}`
+              text: `*Expertise:*\n${expertise}`
             }
           ]
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `*Speaking Experience:*\n${speakingExperience}`
+          }
         }
       ]
     };
 
-    // Add phone number if provided
-    if (phoneNumber && slackMessage.blocks[1] && 'fields' in slackMessage.blocks[1]) {
-      (slackMessage.blocks[1] as any).fields.push({
-        type: "mrkdwn",
-        text: `*Phone:*\n${phoneNumber}`
+    // Add optional fields if provided
+    if (phoneNumber) {
+      slackMessage.blocks.push({
+        type: "section",
+        fields: [
+          {
+            type: "mrkdwn",
+            text: `*Phone:*\n${phoneNumber}`
+          }
+        ]
       });
     }
 
-    // Add additional comments if provided
-    if (specificNeeds) {
+    if (website) {
+      slackMessage.blocks.push({
+        type: "section",
+        fields: [
+          {
+            type: "mrkdwn",
+            text: `*Website:*\n${website}`
+          }
+        ]
+      });
+    }
+
+    if (twitter) {
+      slackMessage.blocks.push({
+        type: "section",
+        fields: [
+          {
+            type: "mrkdwn",
+            text: `*Twitter:*\n${twitter}`
+          }
+        ]
+      });
+    }
+
+    if (instagram) {
+      slackMessage.blocks.push({
+        type: "section",
+        fields: [
+          {
+            type: "mrkdwn",
+            text: `*Instagram:*\n${instagram}`
+          }
+        ]
+      });
+    }
+
+    if (additionalInfo) {
       slackMessage.blocks.push({
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `*Additional Comments:*\n${specificNeeds}`
+          text: `*Additional Information:*\n${additionalInfo}`
         }
       });
     }
@@ -119,14 +178,17 @@ export async function POST(request: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          company: company,
-          jobTitle: jobTitle,
-          // Prefix phone number with ' to force text format in Google Sheets
+          firstName,
+          lastName,
+          email,
+          linkedin,
+          expertise,
+          speakingExperience,
           phone: phoneNumber ? `'${phoneNumber}` : '',
-          comments: specificNeeds
+          website,
+          twitter,
+          instagram,
+          additionalInfo
         }),
       });
 
@@ -138,12 +200,12 @@ export async function POST(request: NextRequest) {
 
     // Return success response
     return NextResponse.json(
-      { message: 'Contact form submitted successfully' },
+      { message: 'Speaker application submitted successfully' },
       { status: 200 }
     );
 
   } catch (error) {
-    console.error('Error processing contact form:', error);
+    console.error('Error processing speaker application:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

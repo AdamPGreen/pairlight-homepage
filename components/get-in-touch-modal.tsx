@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import {
   Dialog,
   DialogContent,
@@ -25,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -33,7 +35,11 @@ const contactFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   company: z.string().min(1, "Company name is required"),
   jobTitle: z.string().optional(),
-  phoneNumber: z.string().optional(),
+  phoneNumber: z.string()
+    .refine((val) => !val || isValidPhoneNumber(val), {
+      message: "Please enter a valid phone number",
+    })
+    .optional(),
   specificNeeds: z.string().optional(),
 });
 
@@ -223,9 +229,11 @@ export function GetInTouchModal({ children, triggerClassName }: GetInTouchModalP
                       <FormItem>
                         <FormLabel>Phone Number (Optional)</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="+1 (555) 123-4567" 
-                            {...field} 
+                          <PhoneInput 
+                            value={field.value || ''}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            error={!!form.formState.errors.phoneNumber}
                           />
                         </FormControl>
                         <FormMessage />

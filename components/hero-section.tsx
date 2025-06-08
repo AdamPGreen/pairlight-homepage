@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { DemoCard } from "@/components/demo-card";
 import { GetInTouchModal } from "@/components/get-in-touch-modal";
+import { JoinSpeakerNetworkModal } from "@/components/join-speaker-network-modal";
 
 export function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -145,14 +146,14 @@ export function HeroSection() {
                   Get speaker matches
                 </Button>
               </GetInTouchModal>
-              <GetInTouchModal>
+              <JoinSpeakerNetworkModal>
                 <Button 
                   variant="outline" 
                   size="lg"
                 >
                   Join the speaker network
                 </Button>
-              </GetInTouchModal>
+              </JoinSpeakerNetworkModal>
             </div>
           </div>
           
