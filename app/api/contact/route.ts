@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
+
 export async function POST(request: NextRequest) {
   try {
     // Get the Slack webhook URL from environment variables
@@ -107,6 +109,30 @@ export async function POST(request: NextRequest) {
         { error: 'Failed to send notification' },
         { status: 500 }
       );
+    }
+
+    // Send to Google Sheets
+    if (GOOGLE_SCRIPT_URL) {
+      const googleResponse = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          company: company,
+          jobTitle: jobTitle,
+          phone: phoneNumber,
+          comments: specificNeeds
+        }),
+      });
+
+      if (!googleResponse.ok) {
+        console.error('Google Sheets error:', await googleResponse.text());
+        // Continue even if Google Sheets fails - we don't want to block the form submission
+      }
     }
 
     // Return success response

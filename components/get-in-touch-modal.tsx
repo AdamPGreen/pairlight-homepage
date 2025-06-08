@@ -91,7 +91,6 @@ export function GetInTouchModal({ children, triggerClassName }: GetInTouchModalP
       }, 2000);
     } catch (error) {
       console.error("Error submitting form:", error);
-      // You might want to show an error message to the user here
       alert("There was an error submitting your form. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -139,7 +138,7 @@ export function GetInTouchModal({ children, triggerClassName }: GetInTouchModalP
               </DialogHeader>
               
               <Form {...form}>
-                <div className="space-y-6 pb-4">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pb-4">
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField
@@ -251,28 +250,28 @@ export function GetInTouchModal({ children, triggerClassName }: GetInTouchModalP
                       </FormItem>
                     )}
                   />
-                </div>
+                  
+                  {/* Fixed bottom button area */}
+                  <div className="border-t bg-background px-6 py-4 mt-auto">
+                    <div className="flex justify-end gap-3">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setOpen(false)}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+                    </div>
+                  </div>
+                </form>
               </Form>
-            </div>
-            
-            {/* Fixed bottom button area */}
-            <div className="border-t bg-background px-6 py-4 mt-auto">
-              <div className="flex justify-end gap-3">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={form.handleSubmit(onSubmit)}
-                  disabled={isSubmitting}
-                  className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </div>
             </div>
           </>
         )}
