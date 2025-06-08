@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { DemoCard } from "@/components/demo-card";
+import { GetInTouchModal } from "@/components/get-in-touch-modal";
 
 export function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -136,18 +137,22 @@ export function HeroSection() {
               Pairlight enables you to source and connect with high-quality speakers — curated, vetted, and aligned with your agenda.
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
-              <Button 
-                size="lg" 
-                className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
-              >
-                Get speaker matches
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-              >
-                Join the speaker network
-              </Button>
+              <GetInTouchModal>
+                <Button 
+                  size="lg" 
+                  className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+                >
+                  Get speaker matches
+                </Button>
+              </GetInTouchModal>
+              <GetInTouchModal>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                >
+                  Join the speaker network
+                </Button>
+              </GetInTouchModal>
             </div>
           </div>
           
