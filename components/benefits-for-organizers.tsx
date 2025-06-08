@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ClockIcon, UserGroupIcon, StarIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { GetInTouchModal } from "@/components/get-in-touch-modal";
 
 export function BenefitsForOrganizers() {
   const benefits = [
@@ -61,6 +63,15 @@ export function BenefitsForOrganizers() {
             <p className="text-xl text-muted-foreground">
               Streamline your event planning process and connect with top-tier speakers who align perfectly with your vision.
             </p>
+            <div className="mt-6">
+              <GetInTouchModal>
+                <Button 
+                  className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+                >
+                  Learn More
+                </Button>
+              </GetInTouchModal>
+            </div>
           </motion.div>
           
           <motion.div

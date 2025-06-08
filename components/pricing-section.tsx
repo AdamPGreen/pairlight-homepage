@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { GetInTouchModal } from "@/components/get-in-touch-modal";
 
 export function PricingSection() {
   return (
@@ -70,11 +71,13 @@ export function PricingSection() {
               </div>
             </div>
             
-            <Button 
-              className="w-full bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
-            >
-              Get in touch
-            </Button>
+            <GetInTouchModal>
+              <Button 
+                className="w-full bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+              >
+                Get in touch
+              </Button>
+            </GetInTouchModal>
           </div>
         </motion.div>
       </div>

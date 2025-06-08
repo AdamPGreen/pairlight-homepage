@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { MagnifyingGlassIcon, UserPlusIcon, ChatBubbleLeftRightIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { GetInTouchModal } from "@/components/get-in-touch-modal";
 
 export function AgentSuite() {
   const agents = [
@@ -113,9 +115,18 @@ export function AgentSuite() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 text-center text-muted-foreground"
+          className="mt-12 text-center"
         >
-          <p className="text-sm">
+          <div className="mb-4">
+            <GetInTouchModal>
+              <Button 
+                className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+              >
+                Learn More
+              </Button>
+            </GetInTouchModal>
+          </div>
+          <p className="text-sm text-muted-foreground">
             All agents work in concert to deliver a seamless experience
           </p>
         </motion.div>

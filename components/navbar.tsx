@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { GetInTouchModal } from "@/components/get-in-touch-modal";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,12 +71,14 @@ export function Navbar() {
               <Sun className="h-5 w-5 transition-all duration-200 absolute inset-0 m-auto opacity-0 rotate-90 dark:opacity-100 dark:rotate-0" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Button 
-              size="sm" 
-              className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
-            >
-              Book demo
-            </Button>
+            <GetInTouchModal>
+              <Button 
+                size="sm" 
+                className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
+              >
+                Book demo
+              </Button>
+            </GetInTouchModal>
             <button
               className="lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
