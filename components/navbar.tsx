@@ -23,6 +23,7 @@ export function Navbar() {
   }, []);
 
   const navItems = [
+    { href: "#why-pairlight", label: "Why Pairlight" },
     { href: "#how-it-works", label: "How it works" },
     { href: "#for-organizers", label: "For organizers" },
     { href: "#for-speakers", label: "For speakers" },

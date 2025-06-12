@@ -134,8 +134,8 @@ export function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
               Find the Right Speakers, <span className="font-semibold">Fast</span>
             </h1>
-            <h2 className="text-xl md:text-2xl text-muted-foreground font-light">
-              Pairlight enables you to source and connect with high-quality speakers — curated, vetted, and aligned with your agenda.
+            <h2 className="text-xl md:text-2xl font-light">
+            Great speakers change how people think. That’s why they matter. But finding one shouldn't be a guessing game. Pairlight helps you find high-quality speakers who actually fit your event, in a fraction of the time.
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <GetInTouchModal>
@@ -143,7 +143,7 @@ export function HeroSection() {
                   size="lg" 
                   className="bg-[#6B85FE] hover:bg-[#5A73EB] text-white"
                 >
-                  Get speaker matches
+                  Get Matched
                 </Button>
               </GetInTouchModal>
               <JoinSpeakerNetworkModal>

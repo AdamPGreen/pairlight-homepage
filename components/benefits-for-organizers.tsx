@@ -57,8 +57,9 @@ export function BenefitsForOrganizers() {
             transition={{ duration: 0.5 }}
             className="text-left"
           >
+            <span className="block text-sm font-semibold text-[#6B85FE] mb-2">For Organizers</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Benefits for Organizers
+              Speaker sourcing, solved
             </h2>
             <p className="text-xl text-muted-foreground">
               Streamline your event planning process and connect with top-tier speakers who align perfectly with your vision.

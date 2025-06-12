@@ -91,6 +91,19 @@
   .bg-gradient-blob {
     @apply bg-gradient-radial from-[hsl(var(--gradient-blob-1))] via-[hsl(var(--gradient-blob-2))] to-[hsl(var(--gradient-blob-3))];
   }
+  .text-animated-gradient {
+    background: linear-gradient(270deg, #6B85FE, #D47AFF, #6B85FE);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 8s ease-in-out infinite;
+    /* filter: drop-shadow(0 0 16px rgba(107,133,254,0.25)); */
+  }
+  /* .text-glow {
+    text-shadow: 0 0 16px #6B85FE44, 0 0 32px #A259FF33;
+  } */
 }
 
 @keyframes fadeIn {
@@ -101,5 +114,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
