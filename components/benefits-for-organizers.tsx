@@ -9,19 +9,19 @@ import { GetInTouchModal } from "@/components/get-in-touch-modal";
 export function BenefitsForOrganizers() {
   const benefits = [
     {
-      icon: <ClockIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
+      icon: <ClockIcon className="h-6 w-6 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Instant shortlist",
-      description: "Skip weeks of outreach."
+      description: "Get matched speakers in minutes. You focus on the vision, we handle the hunt."
     },
     {
-      icon: <UserGroupIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
+      icon: <UserGroupIcon className="h-6 w-6 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Premium network",
-      description: "Invite-only talent keeps sessions fresh and on-trend."
+      description: "Access speakers you won't find anywhere else. Curated talent that makes your event stand out."
     },
     {
-      icon: <StarIcon className="h-8 w-8 text-[#6B85FE] dark:text-[#8B9FFF]" />,
+      icon: <StarIcon className="h-6 w-6 text-[#6B85FE] dark:text-[#8B9FFF]" />,
       title: "Built on trust",
-      description: "Every speaker graded by real event feedback."
+      description: "Every speaker rated by real organizers. No guesswork, just proven performers."
     }
   ];
 
@@ -59,10 +59,10 @@ export function BenefitsForOrganizers() {
           >
             <span className="block text-sm font-semibold text-[#6B85FE] mb-2">For Organizers</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Speaker sourcing, solved
+              You know what makes a great event. We help you find the people who can deliver it.
             </h2>
             <p className="text-xl text-muted-foreground">
-              Streamline your event planning process and connect with top-tier speakers who align perfectly with your vision.
+              Finding the right speakers shouldn't be your most time-consuming task. Skip the endless Google searches and cold emails. Get a curated shortlist in minutes, not weeks.
             </p>
             <div className="mt-6">
               <GetInTouchModal>
@@ -85,11 +85,8 @@ export function BenefitsForOrganizers() {
             {benefits.map((benefit, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="border-none shadow-md hover:shadow-lg transition-shadow duration-300 dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02] dark:border dark:border-[#6B85FE]/[0.1]">
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <div className="p-2 rounded-full bg-[#6B85FE]/10 dark:bg-[#6B85FE]/20">
-                      {benefit.icon}
-                    </div>
-                    <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                  <CardHeader className="flex flex-col items-start gap-2 pb-0">
+                    <CardTitle className="text-lg font-bold leading-tight mb-0">{benefit.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">{benefit.description}</p>

@@ -6,16 +6,17 @@ import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 
 const organizers = [
-  { label: "Internal comms leads", color: "bg-[#6B85FE]/10 text-[#6B85FE]", details: "Drive communication strategy and employee engagement within organizations." },
-  { label: "Event managers", color: "bg-[#6B85FE]/10 text-[#6B85FE]", details: "Plan, coordinate, and execute impactful events from start to finish." },
-  { label: "Marketing and brand teams", color: "bg-[#6B85FE]/10 text-[#6B85FE]", details: "Shape brand perception and amplify event reach through creative campaigns." },
-  { label: "Agency producers", color: "bg-[#6B85FE]/10 text-[#6B85FE]", details: "Deliver seamless event experiences for clients, managing logistics and talent." },
+  { label: "Internal comms leads", details: "Drive engagement and alignment through speakers who actually move the needle." },
+  { label: "Event managers", details: "Deliver flawless events without the usual speaker sourcing headaches." },
+  { label: "Marketing and brand teams", details: "Book speakers who amplify your message and elevate your brand." },
+  { label: "Agency producers", details: "Impress clients with premium talent that makes you look like a hero." },
 ];
 
 const speakers = [
-  { label: "Experienced practitioners and domain experts", color: "bg-[#6B85FE]/10 text-[#6B85FE]" },
-  { label: "Rising voices with a strong point of view", color: "bg-[#6B85FE]/10 text-[#6B85FE]" },
-  { label: "People who've done the work and have something real to share", color: "bg-[#6B85FE]/10 text-[#6B85FE]" },
+  { label: "Thought leaders", details: "Shape conversations around where your industry is heading." },
+  { label: "Subject matter experts", details: "Share deep knowledge that audiences can't get anywhere else." },
+  { label: "Frontline practitioners", details: "Tell the real story of what's working (and what isn't) right now." },
+  { label: "Strategic storytellers", details: "Turn your leadership lessons into narratives that stick." },
 ];
 
 export function WhoWeWorkWithSection() {
@@ -47,19 +48,10 @@ export function WhoWeWorkWithSection() {
               </CardHeader>
               <CardContent className="pt-2 space-y-4">
                 {organizers.map((org, i) => (
-                  <HoverCard key={org.label}>
-                    <HoverCardTrigger asChild>
-                      <div className="flex items-center gap-3 cursor-pointer group">
-                        <Badge className={`rounded-lg px-3 py-2 font-medium text-base ${org.color} group-hover:scale-105 transition-transform duration-200`}>
-                          {org.label}
-                        </Badge>
-                      </div>
-                    </HoverCardTrigger>
-                    <HoverCardContent>
-                      <span className="text-base font-semibold text-[#6B85FE]">{org.label}</span>
-                      <p className="text-sm text-muted-foreground mt-2">{org.details}</p>
-                    </HoverCardContent>
-                  </HoverCard>
+                  <div key={org.label} className="flex flex-col items-start gap-1 py-2">
+                    <span className="text-base font-semibold text-[#6B85FE]">{org.label}</span>
+                    <p className="text-sm text-muted-foreground mt-1">{org.details}</p>
+                  </div>
                 ))}
               </CardContent>
             </Card>
@@ -78,18 +70,10 @@ export function WhoWeWorkWithSection() {
               </CardHeader>
               <CardContent className="pt-2 space-y-4">
                 {speakers.map((sp, i) => (
-                  <HoverCard key={sp.label}>
-                    <HoverCardTrigger asChild>
-                      <div className="flex items-center gap-3 cursor-pointer group">
-                        <Badge className={`rounded-lg px-3 py-2 font-medium text-base ${sp.color} group-hover:scale-105 transition-transform duration-200`}>
-                          {sp.label}
-                        </Badge>
-                      </div>
-                    </HoverCardTrigger>
-                    <HoverCardContent>
-                      <span className="text-base font-semibold text-[#6B85FE]">{sp.label}</span>
-                    </HoverCardContent>
-                  </HoverCard>
+                  <div key={sp.label} className="flex flex-col items-start gap-1 py-2">
+                    <span className="text-base font-semibold text-[#6B85FE]">{sp.label}</span>
+                    <p className="text-sm text-muted-foreground mt-1">{sp.details}</p>
+                  </div>
                 ))}
               </CardContent>
             </Card>

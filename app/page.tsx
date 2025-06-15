@@ -9,6 +9,7 @@ import { PricingSection } from "@/components/pricing-section";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 import { WhyPairlightSection } from "@/components/why-pairlight-section";
+import { WhatIsPairlightSection } from "@/components/what-is-pairlight-section";
 import { WhoWeWorkWithSection } from "@/components/who-we-work-with-section";
 
 export default function Home() {
@@ -17,10 +18,11 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <WhyPairlightSection />
+      <WhatIsPairlightSection />
+      <AgentSuite />
       <HowItWorks />
       <WhoWeWorkWithSection />
       <BenefitsForOrganizers />
-      <AgentSuite />
       <BenefitsForSpeakers />
       <ProductPreview />
       <PricingSection />

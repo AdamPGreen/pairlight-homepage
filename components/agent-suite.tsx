@@ -56,7 +56,7 @@ export function AgentSuite() {
   };
 
   return (
-    <section className="py-24 bg-[#6B85FE]/[0.03] dark:bg-gradient-to-br dark:from-[#6B85FE]/[0.08] dark:via-[#6B85FE]/[0.05] dark:to-[#6B85FE]/[0.02] overflow-hidden">
+    <section className="py-24 md:py-36 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
