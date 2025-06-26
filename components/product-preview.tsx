@@ -48,7 +48,7 @@ export function ProductPreview() {
                 </div>
                 
                 <div className="grid grid-cols-3 gap-4 h-[calc(100%-3rem)]">
-                  <div className="col-span-1 border rounded-lg p-4">
+                  <div className="col-span-1 border rounded-lg p-4 hidden md:block">
                     <h3 className="font-semibold mb-4">Event Categories</h3>
                     {["Keynotes", "Panels", "Workshops", "Breakouts", "Lightning Talks"].map((category, index) => (
                       <div key={index} className={cn("p-3 rounded-md mb-2 text-sm", 
@@ -59,7 +59,7 @@ export function ProductPreview() {
                     ))}
                   </div>
                   
-                  <div className="col-span-2 border rounded-lg p-4 overflow-hidden">
+                  <div className="col-span-3 md:col-span-2 border rounded-lg p-4 overflow-hidden">
                     <h3 className="font-semibold mb-4">AI-Curated Matches</h3>
                     <div className="space-y-4 overflow-auto h-[calc(100%-2rem)]">
                       {[

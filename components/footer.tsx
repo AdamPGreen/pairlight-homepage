@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -32,14 +32,6 @@ export function Footer() {
               Privacy Policy
             </Link>
             <div className="flex items-center gap-4">
-              <Link href="https://twitter.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="https://github.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
               <Link href="https://linkedin.com" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
